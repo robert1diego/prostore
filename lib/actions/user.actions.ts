@@ -22,10 +22,11 @@ export async function signInWithCredentials(
     if (isRedirectError(error)) {
       throw error;
     }
+    return { success: false, message: 'Invalid email or password' };
   }
 }
 
-// Sign the user out
+// Sign user out
 export async function signOutUser() {
   await signOut();
 }
