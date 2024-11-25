@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useTransition } from 'react';
@@ -31,7 +32,8 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit = () => {
+  const onSubmit = (values) => {
+    console.log(values);
     return;
   };
 
@@ -40,11 +42,11 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
       <div className='max-w-md mx-auto space-y-4'>
         <h1 className='h2-bold mt-4'>Shipping Address</h1>
         <p className='text-sm text-muted-foreground'>
-          Please enter an address to ship to
+          Please enter and address to ship to
         </p>
         <Form {...form}>
           <form
-            method='POST'
+            method='post'
             className='space-y-4'
             onSubmit={form.handleSubmit(onSubmit)}
           >
@@ -70,7 +72,6 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                 )}
               />
             </div>
-
             <div className='flex flex-col md:flex-row gap-5'>
               <FormField
                 control={form.control}
@@ -160,12 +161,13 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
               />
             </div>
             <div className='flex gap-2'>
-              <Button type='button' disabled={isPending}>
+              <Button type='submit' disabled={isPending}>
                 {isPending ? (
-                  <Loader className='h-4 w-4 animate-spin' />
+                  <Loader className='w-4 h-4 animate-spin' />
                 ) : (
-                  <ArrowRight className='h-4 w-4' />
-                )}
+                  <ArrowRight className='w-4 h-4' />
+                )}{' '}
+                Continue
               </Button>
             </div>
           </form>
