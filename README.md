@@ -37,7 +37,7 @@ npm install
 
 ### Environment Variables
 
-Rename the `.env-example` file to `.env` and add the following
+Rename the `.example-env` file to `.env` and add the following
 
 #### PostgreSQL Database URL
 
