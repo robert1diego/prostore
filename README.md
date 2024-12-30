@@ -35,6 +35,12 @@ This project is from my **Next.js Ecommerce course**
 npm install
 ```
 
+Note: Some dependencies may have not yet been upadated to support React 19. If you get any errors about depencency compatability, run the following:
+
+```bash
+npm install --legacy-peer-deps
+```
+
 ### Environment Variables
 
 Rename the `.example-env` file to `.env` and add the following
