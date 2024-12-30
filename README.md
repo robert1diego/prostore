@@ -154,6 +154,10 @@ I am not sure how long I will have this demo up but you can view it here:
 
 https://prostore-one.vercel.app/
 
+## Note On Vercel Deployment For Hobby Plan
+
+In order to fit within the limitations of the Vercel hobby plan, we removed the **bcrypt-ts-edge** package and added custom encryption. Now the full project can be deployed to the Hobby plan.
+
 ## License
 
 MIT License
