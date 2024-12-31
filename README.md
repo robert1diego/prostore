@@ -93,7 +93,7 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_51QIr0Ids7GyT6H7X6R5GoEA68lYDcbcC94V
 
 #### Uploadthing Settings
 
-Sign up for an account at https://uploadthingy.com/ and get the token, secret and app ID.
+Sign up for an account at https://uploadthing.com/ and get the token, secret and app ID.
 
 **Example:**
 
