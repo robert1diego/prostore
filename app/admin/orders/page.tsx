@@ -1,4 +1,3 @@
-import { auth } from '@/auth';
 import {
   Table,
   TableBody,
@@ -14,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Pagination from '@/components/shared/pagination';
 import DeleteDialog from '@/components/shared/delete-dialog';
+import { requireAdmin } from '@/lib/auth-guard';
 
 export const metadata: Metadata = {
   title: 'Admin Orders',
@@ -24,10 +24,7 @@ const AdminOrdersPage = async (props: {
 }) => {
   const { page = '1', query: searchText } = await props.searchParams;
 
-  const session = await auth();
-
-  if (session?.user?.role !== 'admin')
-    throw new Error('User is not authorized');
+  await requireAdmin();
 
   const orders = await getAllOrders({
     page: Number(page),
