@@ -154,9 +154,51 @@ I am not sure how long I will have this demo up but you can view it here:
 
 [ https://prostore-one.vercel.app/ ](https://prostore-one.vercel.app/)
 
-## Note On Vercel Deployment For Hobby Plan
+## Bug Fixes And Course FAQ
 
-In order to fit within the limitations of the Vercel hobby plan, we removed the **bcrypt-ts-edge** package and added custom encryption. Now the full project can be deployed to the Hobby plan.
+### Fix: Edge Function Middleware Limitations on Vercel
+
+After deploying your app you may be getting a build error along the lines of:
+
+> The Edge Function "middleware size is 1.03 MB and your plan size limit is 1MB
+
+For the solution to resolve this please see Brads [Gist here](https://gist.github.com/bradtraversy/16e3c89b9b25bc79cf86f5f36e14e83d)
+
+There is also a new lesson added for this fix at the end of the course -
+**Vercel Hobby Tier Fix**
+
+### Bug: A newly logged in user can inherit the previous users cart
+
+If a logged in user adds items to their cart and logs out then a different user
+logs in on the same machine, they will inherit the first users cart.
+
+To fix this we can delete the current users **Cart** from the database in our **lib/actions/user.actions.ts** `signOutUser` action.
+
+> Changes can be seen in [lib/actions/user.actions.ts](https://github.com/bradtraversy/prostore/blob/a498d4362d1485b2bd3152124cb5c3a75f8fdd70/lib/actions/user.actions.ts#L45)
+
+### Bug: Any user can see another users order
+
+If a user knows the `Order.id` of another users order it is possible for them to
+visit **/order/<Order.id>** and see that other users order. This isn't likely to
+happen in reality but should be something we protect against by redirecting the
+user to our **/unauthorized** page if they are not the owner of the order.
+
+In **app/(root)/order/[id]/page.tsx** we can import the `redirect` function from Next:
+
+```ts
+import { notFound, redirect } from 'next/navigation';
+```
+
+Then check if the user is the owner of the order and redirect them if not:
+
+```ts
+// Redirect the user if they don't own the order
+if (order.userId !== session?.user.id) {
+  return redirect('/unauthorized');
+}
+```
+
+> Changes can be seen in [app/(root)/order/[id]/page.tsx](<https://github.com/bradtraversy/prostore/blob/main/app/(root)/order/%5Bid%5D/page.tsx>)
 
 ## License
 
