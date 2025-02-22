@@ -9,6 +9,8 @@ This project is from my **Next.js Ecommerce course**
 - Traversy Media: [https://www.traversymedia.com/nextjs-ecommerce](https://www.traversymedia.com/nextjs-ecommerce)
 - Udemy: [https://www.udemy.com/course/nextjs-ecommerce-course](https://www.udemy.com/course/nextjs-ecommerce-course)
 
+## Table of Contents
+
 <!--toc:start-->
 
 - [Features](#features)
@@ -29,6 +31,7 @@ This project is from my **Next.js Ecommerce course**
   - [Fix: Edge Function Middleware Limitations on Vercel](#fix-edge-function-middleware-limitations-on-vercel)
   - [Bug: A newly logged in user can inherit the previous users cart](#bug-a-newly-logged-in-user-can-inherit-the-previous-users-cart)
   - [Bug: Any user can see another users order](#bug-any-user-can-see-another-users-order)
+  - [Bug: Cart add and remove buttons share loading animation](#bug-cart-add-and-remove-buttons-share-loading-animation)
 - [License](#license)
 <!--toc:end-->
 
@@ -222,6 +225,22 @@ if (order.userId !== session?.user.id) {
 ```
 
 > Changes can be seen in [app/(root)/order/[id]/page.tsx](<https://github.com/bradtraversy/prostore/blob/main/app/(root)/order/%5Bid%5D/page.tsx>)
+
+### Bug: Cart add and remove buttons share loading animation
+
+On our **/cart** page you may notice that when you increment or decrement the
+quantity of an item in the cart, then the loader shows for all buttons after we
+click. This is because all the buttons use the same **pending** state from our
+use of `useTransition` in our [app/(root)/cart/cart-table.tsx](<https://github.com/bradtraversy/prostore/blob/main/app/(root)/cart/cart-table.tsx>)
+
+We can solve this by breaking out the Buttons into their own `AddButton` and
+`RemoveButton` components, each using their own `useTransition` and so having
+their own **pending** state.
+
+You can if you wish move these components to their own files/modules but for
+ease of following along they can be seen in the same file.
+
+> Changes can be seen in [app/(root)/cart/cart-table.tsx](<https://github.com/bradtraversy/prostore/blob/main/app/(root)/cart/cart-table.tsx>)
 
 ## License
 
