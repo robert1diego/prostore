@@ -6,8 +6,31 @@ A full featured Ecommerce website built with Next.js, TypeScript, PostgreSQL and
 
 This project is from my **Next.js Ecommerce course**
 
-- Traversy Media: https://www.traversymedia.com/nextjs-ecommerce
-- Udemy: https://www.udemy.com/course/nextjs-ecommerce-course
+- Traversy Media: [https://www.traversymedia.com/nextjs-ecommerce](https://www.traversymedia.com/nextjs-ecommerce)
+- Udemy: [https://www.udemy.com/course/nextjs-ecommerce-course](https://www.udemy.com/course/nextjs-ecommerce-course)
+
+<!--toc:start-->
+
+- [Features](#features)
+- [Usage](#usage)
+  - [Install Dependencies](#install-dependencies)
+  - [Environment Variables](#environment-variables)
+    - [PostgreSQL Database URL](#postgresql-database-url)
+    - [Next Auth Secret](#next-auth-secret)
+    - [PayPal Client ID and Secret](#paypal-client-id-and-secret)
+    - [Stripe Publishable and Secret Key](#stripe-publishable-and-secret-key)
+    - [Uploadthing Settings](#uploadthing-settings)
+    - [Resend API Key](#resend-api-key)
+  - [Run](#run)
+- [Prisma Studio](#prisma-studio)
+- [Seed Database](#seed-database)
+- [Demo](#demo)
+- [Bug Fixes And Course FAQ](#bug-fixes-and-course-faq)
+  - [Fix: Edge Function Middleware Limitations on Vercel](#fix-edge-function-middleware-limitations-on-vercel)
+  - [Bug: A newly logged in user can inherit the previous users cart](#bug-a-newly-logged-in-user-can-inherit-the-previous-users-cart)
+  - [Bug: Any user can see another users order](#bug-any-user-can-see-another-users-order)
+- [License](#license)
+<!--toc:end-->
 
 ## Features
 
