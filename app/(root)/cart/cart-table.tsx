@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useTransition } from 'react';
 import { addItemToCart, removeItemFromCart } from '@/lib/actions/cart.actions';
 import { ArrowRight, Loader, Minus, Plus } from 'lucide-react';
-import { Cart, CartItem, Product } from '@/types';
+import { Cart, CartItem } from '@/types';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -81,7 +81,6 @@ function RemoveButton({ item }: { item: CartItem }) {
 
 const CartTable = ({ cart }: { cart?: Cart }) => {
   const router = useRouter();
-  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
   return (
