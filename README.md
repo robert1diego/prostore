@@ -13,6 +13,7 @@ This project is from my **Next.js Ecommerce course**
 
 <!--toc:start-->
 
+- [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Usage](#usage)
   - [Install Dependencies](#install-dependencies)
@@ -32,6 +33,7 @@ This project is from my **Next.js Ecommerce course**
   - [Bug: A newly logged in user can inherit the previous users cart](#bug-a-newly-logged-in-user-can-inherit-the-previous-users-cart)
   - [Bug: Any user can see another users order](#bug-any-user-can-see-another-users-order)
   - [Bug: Cart add and remove buttons share loading animation](#bug-cart-add-and-remove-buttons-share-loading-animation)
+  - [FAQ: Why are we using a JS click event in not-found](#faq-why-are-we-using-a-js-click-event-in-not-found)
 - [License](#license)
 <!--toc:end-->
 
