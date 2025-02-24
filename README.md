@@ -242,6 +242,33 @@ ease of following along they can be seen in the same file.
 
 > Changes can be seen in [app/(root)/cart/cart-table.tsx](<https://github.com/bradtraversy/prostore/blob/main/app/(root)/cart/cart-table.tsx>)
 
+### FAQ: Why are we using a JS click event in not-found
+
+In our [app/not-found.tsx](https://github.com/bradtraversy/prostore/blob/main/app/not-found.tsx) we currently have:
+
+```tsx
+<Button
+  variant='outline'
+  className='mt-4 ml-2'
+  onClick={() => (window.location.href = '/')}
+>
+  Back To Home
+</Button>
+```
+
+So we navigate the user back to the home page with a JavaScript click event,
+but this should really be a `<a />` (link) instead.
+
+So we can change the code to:
+
+```tsx
+<Button variant='outline' className='mt-4 ml-2' asChild>
+  <Link href='/'>Back To Home</Link>
+</Button>
+```
+
+> Changes can be seen in [app/not-found.tsx](https://github.com/bradtraversy/prostore/blob/main/app/not-found.tsx)
+
 ## License
 
 MIT License
