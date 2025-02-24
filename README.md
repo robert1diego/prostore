@@ -221,7 +221,7 @@ Then check if the user is the owner of the order and redirect them if not:
 
 ```ts
 // Redirect the user if they don't own the order
-if (order.userId !== session?.user.id) {
+if (order.userId !== session?.user.id && session?.user.role !== 'admin') {
   return redirect('/unauthorized');
 }
 ```
