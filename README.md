@@ -290,7 +290,7 @@ Make sure your **tailwind.config.ts** matches [this file](https://github.com/bra
 
 ### :rocket: Option 2: Use Tailwind v4 (Updated Code Available, this seems to be the smoothest option)
 
-If you'd rather use **Tailwind v4**, I've created a **`tailwind4`** branch of Brad's repository where you can grab the updated code:  
+If you'd rather use **Tailwind v4**, there is a **`tailwind4`** branch of this repository where you can grab the updated code:  
 :link: **[Updated Repo](https://github.com/bradtraversy/prostore/tree/tailwind4)**
 
 ### Changes Needed for Tailwind v4:
