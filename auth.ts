@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import { PrismaAdapter } from '@auth/prisma-adapter';
@@ -7,7 +6,7 @@ import { cookies } from 'next/headers';
 import { compare } from './lib/encrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const config = {
+export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: '/sign-in',
     error: '/sign-in',
@@ -57,7 +56,7 @@ export const config = {
   ],
   callbacks: {
     ...authConfig.callbacks,
-    async session({ session, user, trigger, token }: any) {
+    async session({ session, user, trigger, token }) {
       // Set the user ID from the token
       session.user.id = token.sub;
       session.user.role = token.role;
@@ -70,7 +69,7 @@ export const config = {
 
       return session;
     },
-    async jwt({ token, user, trigger, session }: any) {
+    async jwt({ token, user, trigger, session }) {
       // Assign user fields to token
       if (user) {
         token.id = user.id;
@@ -120,6 +119,4 @@ export const config = {
       return token;
     },
   },
-};
-
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+});
