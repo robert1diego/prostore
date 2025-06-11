@@ -33,13 +33,13 @@ This project is from my **Next.js Ecommerce course**
   - [Bug: Any user can see another users order](#bug-any-user-can-see-another-users-order)
   - [Bug: Cart add and remove buttons share loading animation](#bug-cart-add-and-remove-buttons-share-loading-animation)
   - [FAQ: Why are we using a JS click event in not-found](#faq-why-are-we-using-a-js-click-event-in-not-found)
+  - [Fix: TypeScript no-explicit-any in auth.ts](#fix-typescript-no-explicit-any-in-authts)
 - [TailwindCSS Update: Breaking Changes](#tailwindcss-update-breaking-changes)
   - [Option 1: Stick with Tailwind v3 (Matches the Course)](#option-1-stick-with-tailwind-v3-matches-the-course)
   - [Option 2: Use Tailwind v4 (Updated Code Available, this seems to be the smoothest option)](#option-2-use-tailwind-v4-updated-code-available-this-seems-to-be-the-smoothest-option)
   - [Changes Needed for Tailwind v4:](#changes-needed-for-tailwind-v4)
   - [Migrating from Tailwind v3 to v4 Mid-Course?](#migrating-from-tailwind-v3-to-v4-mid-course)
   - [:link: Upgrade Guide](#link-upgrade-guide)
-- [Fix: TypeScript no-explicit-any in auth.ts](#fix-typescript-no-explicit-any-in-authts)
 - [License](#license)
 <!--toc:end-->
 
@@ -277,49 +277,7 @@ So we can change the code to:
 
 > Changes can be seen in [app/not-found.tsx](https://github.com/bradtraversy/prostore/blob/main/app/not-found.tsx)
 
-## TailwindCSS Update: Breaking Changes
-
-Many of you are running into issues following the course because **TailwindCSS recently had a major update**.  
-By default, you'll install the latest version (**Tailwind v4**), but the course was recorded with **Tailwind v3**.
-
-### Option 1: Stick with Tailwind v3 (Matches the Course)
-
-If you want to follow the course exactly, you should install **Tailwind v3** and refer to the v3 docs:  
-:link: **[Tailwind v3 Setup for Next.js](https://v3.tailwindcss.com/docs/guides/nextjs)**  
-Make sure your **tailwind.config.ts** matches [this file](https://github.com/bradtraversy/prostore/blob/main/tailwind.config.ts)
-
-### Option 2: Use Tailwind v4 (Updated Code Available, this seems to be the smoothest option)
-
-If you'd rather use **Tailwind v4**, there is a **`tailwind4`** branch of this repository where you can grab the updated code:  
-:link: **[Updated Repo](https://github.com/bradtraversy/prostore/tree/tailwind4)**
-
-### Changes Needed for Tailwind v4:
-
-- **Delete** `tailwind.config.ts` (if it exists).
-- **Update** `globals.css` to match [this file](https://github.com/bradtraversy/prostore/blob/tailwind4/assets/styles/globals.css).
-- **Update** `postcss.config.mjs` to match [this file](https://github.com/bradtraversy/prostore/blob/tailwind4/postcss.config.mjs)
-- If you're using the latest Next.js, these should be the only changes required.
-
-### Migrating from Tailwind v3 to v4 Mid-Course?
-
-If you've already started the course with **Tailwind v3**, some **Radix UI components may break** due to class name changes.  
-The easiest fix is to use Tailwind's migration tool:
-
-```sh
-npx @tailwindcss/upgrade
-```
-
-### :link: Upgrade Guide
-
-If you use the migration tool, you don't need to manually:
-
-- :white_check_mark: Update globals.css (the tool handles it).
-- :white_check_mark: Delete tailwind.config.ts.
-
-If you run into issues, please post over on **Discord** or in the **Udemy Q&A**
-for the course.
-
-## Fix: TypeScript no-explicit-any in auth.ts
+### Fix: TypeScript no-explicit-any in auth.ts
 
 You may be seeing warnings from TS in your **auth.ts** and **auth.config.ts**
 about using the `any` Type.
@@ -376,6 +334,48 @@ constructor, rather than creating the config object first.
 - [auth.ts](https://github.com/bradtraversy/prostore/blob/main/auth.ts)
 - [auth.config.ts](https://github.com/bradtraversy/prostore/blob/main/auth.config.ts)
 - [types/next-auth.d.ts](https://github.com/bradtraversy/prostore/blob/main/types/next-auth.d.ts)
+
+## TailwindCSS Update: Breaking Changes
+
+Many of you are running into issues following the course because **TailwindCSS recently had a major update**.  
+By default, you'll install the latest version (**Tailwind v4**), but the course was recorded with **Tailwind v3**.
+
+### Option 1: Stick with Tailwind v3 (Matches the Course)
+
+If you want to follow the course exactly, you should install **Tailwind v3** and refer to the v3 docs:  
+:link: **[Tailwind v3 Setup for Next.js](https://v3.tailwindcss.com/docs/guides/nextjs)**  
+Make sure your **tailwind.config.ts** matches [this file](https://github.com/bradtraversy/prostore/blob/main/tailwind.config.ts)
+
+### Option 2: Use Tailwind v4 (Updated Code Available, this seems to be the smoothest option)
+
+If you'd rather use **Tailwind v4**, there is a **`tailwind4`** branch of this repository where you can grab the updated code:  
+:link: **[Updated Repo](https://github.com/bradtraversy/prostore/tree/tailwind4)**
+
+### Changes Needed for Tailwind v4:
+
+- **Delete** `tailwind.config.ts` (if it exists).
+- **Update** `globals.css` to match [this file](https://github.com/bradtraversy/prostore/blob/tailwind4/assets/styles/globals.css).
+- **Update** `postcss.config.mjs` to match [this file](https://github.com/bradtraversy/prostore/blob/tailwind4/postcss.config.mjs)
+- If you're using the latest Next.js, these should be the only changes required.
+
+### Migrating from Tailwind v3 to v4 Mid-Course?
+
+If you've already started the course with **Tailwind v3**, some **Radix UI components may break** due to class name changes.  
+The easiest fix is to use Tailwind's migration tool:
+
+```sh
+npx @tailwindcss/upgrade
+```
+
+### :link: Upgrade Guide
+
+If you use the migration tool, you don't need to manually:
+
+- :white_check_mark: Update globals.css (the tool handles it).
+- :white_check_mark: Delete tailwind.config.ts.
+
+If you run into issues, please post over on **Discord** or in the **Udemy Q&A**
+for the course.
 
 ## License
 
