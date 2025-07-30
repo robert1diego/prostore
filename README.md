@@ -357,6 +357,7 @@ If you'd rather use **Tailwind v4**, there is a **`tailwind4`** branch of this r
 - **Update** `globals.css` to match [this file](https://github.com/bradtraversy/prostore/blob/tailwind4/assets/styles/globals.css).
 - **Update** `postcss.config.mjs` to match [this file](https://github.com/bradtraversy/prostore/blob/tailwind4/postcss.config.mjs)
 - If you're using the latest Next.js, these should be the only changes required.
+- Make sure you have the `tailwindcss-animate` package installed - `npm i tailwindcss-animate`
 
 ### Migrating from Tailwind v3 to v4 Mid-Course?
 
