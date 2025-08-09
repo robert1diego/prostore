@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useTransition } from 'react';
 import { addItemToCart, removeItemFromCart } from '@/lib/actions/cart.actions';
 import { ArrowRight, Loader, Minus, Plus } from 'lucide-react';
-import { Cart } from '@/types';
+import { Cart, CartItem } from '@/types';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -19,9 +19,71 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { formatCurrency } from '@/lib/utils';
 
+// NOTE: The code here has changed from the original course code so that the
+// Buttons no longer share the same state and show the loader independently from
+// other items in the cart
+function AddButton({ item }: { item: CartItem }) {
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
+  return (
+    <Button
+      disabled={isPending}
+      variant='outline'
+      type='button'
+      onClick={() =>
+        startTransition(async () => {
+          const res = await addItemToCart(item);
+
+          if (!res.success) {
+            toast({
+              variant: 'destructive',
+              description: res.message,
+            });
+          }
+        })
+      }
+    >
+      {isPending ? (
+        <Loader className='w-4 h-4 animate-spin' />
+      ) : (
+        <Plus className='w-4 h-4' />
+      )}
+    </Button>
+  );
+}
+
+function RemoveButton({ item }: { item: CartItem }) {
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
+  return (
+    <Button
+      disabled={isPending}
+      variant='outline'
+      type='button'
+      onClick={() =>
+        startTransition(async () => {
+          const res = await removeItemFromCart(item.productId);
+
+          if (!res.success) {
+            toast({
+              variant: 'destructive',
+              description: res.message,
+            });
+          }
+        })
+      }
+    >
+      {isPending ? (
+        <Loader className='w-4 h-4 animate-spin' />
+      ) : (
+        <Minus className='w-4 h-4' />
+      )}
+    </Button>
+  );
+}
+
 const CartTable = ({ cart }: { cart?: Cart }) => {
   const router = useRouter();
-  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
   return (
@@ -60,55 +122,9 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                       </Link>
                     </TableCell>
                     <TableCell className='flex-center gap-2'>
-                      <Button
-                        disabled={isPending}
-                        variant='outline'
-                        type='button'
-                        onClick={() =>
-                          startTransition(async () => {
-                            const res = await removeItemFromCart(
-                              item.productId
-                            );
-
-                            if (!res.success) {
-                              toast({
-                                variant: 'destructive',
-                                description: res.message,
-                              });
-                            }
-                          })
-                        }
-                      >
-                        {isPending ? (
-                          <Loader className='w-4 h-4 animate-spin' />
-                        ) : (
-                          <Minus className='w-4 h-4' />
-                        )}
-                      </Button>
+                      <RemoveButton item={item} />
                       <span>{item.qty}</span>
-                      <Button
-                        disabled={isPending}
-                        variant='outline'
-                        type='button'
-                        onClick={() =>
-                          startTransition(async () => {
-                            const res = await addItemToCart(item);
-
-                            if (!res.success) {
-                              toast({
-                                variant: 'destructive',
-                                description: res.message,
-                              });
-                            }
-                          })
-                        }
-                      >
-                        {isPending ? (
-                          <Loader className='w-4 h-4 animate-spin' />
-                        ) : (
-                          <Plus className='w-4 h-4' />
-                        )}
-                      </Button>
+                      <AddButton item={item} />
                     </TableCell>
                     <TableCell className='text-right'>${item.price}</TableCell>
                   </TableRow>

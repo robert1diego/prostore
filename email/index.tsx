@@ -1,7 +1,9 @@
 import { Resend } from 'resend';
 import { SENDER_EMAIL, APP_NAME } from '@/lib/constants';
 import { Order } from '@/types';
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
 import PurchaseReceiptEmail from './purchase-receipt';
 
 let resend: Resend | null = null;
